@@ -48,25 +48,27 @@ int main(int argc, char** argv)
 	/* Process the text */
 	for (int i = 0; i < textLength - 1; i++)
 	{
-		/* Handle cases where uppercase letters would go over Z or under A */
+		/* Handle uppercase letters */
 		if (text[i] > 64 && text[i] < 91)
 		{
 			/* Check if should wrap around */
 			if (text[i] + rotationAmount > 90)
 			{
 				int wrap = (text[i] + rotationAmount) - 90;
-				text[i] = 65 + wrap;
+				text[i] = 64 + wrap;
 				continue;
 			}
 			else if (text[i] + rotationAmount < 65)
 			{
-				int wrap = (text[i] + rotationAmount) + 65;
-				text[i] = 90 - wrap;
+				int wrap = 65 - (text[i] + rotationAmount);
+				text[i] = 91 - wrap;
 				continue;
 			}
+
+			text[i] += rotationAmount;
 		}
 
-		/* Handle cases where lowercase letters would go over Z or under A */
+		/* Handler lowercase letters */
 		if (text[i] > 96 && text[i] < 123)
 		{
 			/* Check if should wrap around */
@@ -82,9 +84,9 @@ int main(int argc, char** argv)
 				text[i] = 123 - wrap;
 				continue;
 			}
-		}
 
-		text[i] += rotationAmount;
+			text[i] += rotationAmount;
+		}
 	}
 
 	/* Print the result */
