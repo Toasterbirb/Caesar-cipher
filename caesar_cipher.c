@@ -12,7 +12,7 @@ int main(int argc, char** argv)
 {
 	int rotationAmount = 0;
 	int textLength = 0;
-	char* text;
+	char* text = argv[1];
 
 	/* Parse arguments */
 	if (argc > 1)
@@ -27,8 +27,6 @@ int main(int argc, char** argv)
 		{
 			/* Read the text */
 			textLength = strlen(argv[1]) + 1;
-			text = malloc(strlen(argv[1]) + 1);
-			strcpy(text, argv[1]);
 
 			/* Read the rotation amount */
 			rotationAmount = atoi(argv[2]);
@@ -91,7 +89,4 @@ int main(int argc, char** argv)
 
 	/* Print the result */
 	printf("%s\n", text);
-
-	/* Free memory allocations */
-	free(text);
 }
